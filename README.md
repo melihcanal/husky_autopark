@@ -1,43 +1,18 @@
-husky
-=====
+1. Start the autopark simulation for Husky:
 
-Common ROS packages for the Clearpath Husky, useable for both simulation and
-real robot operation.
+	roslaunch husky_gazebo husky_autopark.launch
 
- - husky_control : Control configuration
- - husky_description : Robot description (URDF)
- - husky_msgs : Message definitions
- - husky_navigation : Navigation configurations and demos
+2. Start the Clearpath-configured rviz visualizer:
 
-For Husky instructions and tutorials, please see [Robots/Husky](http://wiki.ros.org/Robots/Husky).
+	roslaunch husky_viz view_robot.launch
 
-To create a custom Husky description or simulation, please fork [husky_customization](https://github.com/husky/husky_customization).
+3. Start the gmapping demo with any of these:
 
-husky_desktop
-=============
+	roslaunch husky_navigation gmapping_dijkstra_dwa.launch (uses move_base library with global planner dijkstra and local planner dwa)
+	roslaunch husky_navigation gmapping_dijkstra_teb.launch (uses move_base library with global planner dijkstra and local planner teb)
+	roslaunch husky_navigation gmapping_astar_dwa.launch (uses move_base library with global planner a* and local planner dwa)
+	roslaunch husky_navigation gmapping_astar_teb.launch (uses move_base library with global planner a* and local planner teb)
 
-Desktop ROS packages for the Clearpath Husky, which may pull in graphical dependencies.
+4. To save the generated map, you can run the map_saver utility:
 
- - husky_viz : Visualization (rviz) configuration and bringup
-
-For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
-
-husky_robot
-===========
-
-Robot ROS packages for the Clearpath Husky, for operating robot hardware.
-
- - husky_bringup : Bringup launch files and scripts.
- - husky_base : Hardware driver for communicating with the onboard MCU.
-
-For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
-
-husky_simulator
-==============
-
-Simulator ROS packages for the Clearpath Husky.
-
- - husky_gazebo : Gazebo plugin definitions and extensions to the robot URDF.
-
-For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
-# husky_autopark
+	rosrun map_server map_saver -f <filename>
